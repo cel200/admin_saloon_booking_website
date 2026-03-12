@@ -1,0 +1,186 @@
+/* frontend/src/components/Staff/StaffList.css */
+.staff-list-wrapper {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.user-cell {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    min-width: 190px;
+}
+
+.avatar-sm {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+}
+
+.badge-spec {
+    padding: 0.25rem 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: inline-block;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+
+.status-dot.online {
+    background: #10b981;
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
+}
+
+.status-dot.busy {
+    background: #f59e0b;
+}
+
+.status-dot.offline {
+    background: #6b7280;
+}
+
+.icon-btn-sm {
+    padding: 0.4rem;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn-sm:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.icon-btn-sm.delete:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+@media (max-width: 640px) {
+    .user-cell {
+        gap: 0.5rem;
+        min-width: 160px;
+    }
+
+    .avatar-sm {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+
+    .badge-spec {
+        font-size: 0.72rem;
+        padding: 0.2rem 0.55rem;
+        white-space: nowrap;
+    }
+}
+
+.staff-edit-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 1rem;
+}
+
+.staff-edit-modal {
+    width: min(560px, 100%);
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 1.25rem;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.staff-edit-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.staff-edit-modal-header h3 {
+    margin: 0;
+    color: var(--text-primary);
+}
+
+.staff-edit-modal-close {
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0.25rem;
+}
+
+.staff-edit-modal-close:hover {
+    color: var(--text-primary);
+}
+
+.staff-edit-modal-form {
+    display: grid;
+    gap: 0.9rem;
+}
+
+.staff-edit-modal-form input,
+.staff-edit-modal-form select {
+    width: 100%;
+    padding: 0.65rem 0.8rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-primary);
+    outline: none;
+}
+
+.staff-edit-modal-form input:focus,
+.staff-edit-modal-form select:focus {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.staff-edit-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 0.4rem;
+}
+
+@media (max-width: 480px) {
+    .staff-edit-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .staff-edit-modal-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

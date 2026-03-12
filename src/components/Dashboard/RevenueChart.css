@@ -1,0 +1,81 @@
+/* frontend/src/components/Dashboard/RevenueChart.css */
+.chart-section {
+    width: 100%;
+    /* Inherits card styles from global */
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.card-header h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.chart-placeholder {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.bars {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.bar {
+    width: 8px;
+    background: var(--accent-primary);
+    border-radius: 4px 4px 0 0;
+    opacity: 0.8;
+    transition: height 0.5s ease;
+}
+
+.bar:hover {
+    opacity: 1;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.months {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    padding-top: 0.5rem;
+    gap: 0.25rem;
+}
+
+.months span {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .card-header {
+        margin-bottom: 1rem;
+    }
+
+    .card-header h3 {
+        font-size: 1rem;
+    }
+
+    .chart-placeholder {
+        height: 220px;
+    }
+
+    .bar {
+        width: 6px;
+    }
+
+    .months {
+        font-size: 0.68rem;
+    }
+}

@@ -1,0 +1,139 @@
+/* frontend/src/components/Services/ServiceList.css */
+.service-list-wrapper {
+    background: var(--bg-card);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--border-color);
+    overflow: hidden;
+}
+
+.badge-category {
+    padding: 0.25rem 0.75rem;
+    border-radius: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    font-size: 0.8rem;
+    border: 1px solid var(--border-color);
+    display: inline-block;
+}
+
+.icon-btn-sm {
+    padding: 0.4rem;
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-secondary);
+    transition: all 0.2s;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-btn-sm:hover {
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+.icon-btn-sm.delete:hover {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+@media (max-width: 640px) {
+    .badge-category {
+        font-size: 0.72rem;
+        padding: 0.2rem 0.55rem;
+        white-space: nowrap;
+    }
+}
+
+.service-edit-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 110;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.service-edit-modal {
+    width: 100%;
+    max-width: 520px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.service-edit-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.service-edit-modal-header h3 {
+    font-size: 1.1rem;
+}
+
+.service-edit-modal-close {
+    background: transparent;
+    color: var(--text-secondary);
+    padding: 0.35rem;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+}
+
+.service-edit-modal-close:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+}
+
+.service-edit-modal-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+}
+
+.service-edit-modal-form input {
+    width: 100%;
+    padding: 0.75rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+}
+
+.service-edit-modal-form input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.service-edit-modal-actions {
+    margin-top: 0.5rem;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+@media (max-width: 768px) {
+    .service-edit-modal {
+        padding: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-edit-modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .service-edit-modal-actions .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
