@@ -31,7 +31,7 @@ export default function LoginPage() {
     }
 
     if (error) {
-      alert(error);
+      alert(error); 
     }
   }, [user, error]);
 
