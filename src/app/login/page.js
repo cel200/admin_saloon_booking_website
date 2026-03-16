@@ -21,19 +21,19 @@ export default function LoginPage() {
     dispatch(loginUser({ email, password }));
     // setLoading(true);
     // Simulate login
-    if(user?.token) {
-        Cookies.set("token",user.token)
-      router.push("/dashboard");
-      }
-    setTimeout(() => {
-      if(user){
-        alert(user.message)
-      }
-      else{
-        alert(error)
-      }
-    }, 1000);
+   
   };
+  useEffect(() => {
+    if (user?.token) {
+      Cookies.set("token", user.token);
+      alert(user.message);
+      router.push("/dashboard");
+    }
+
+    if (error) {
+      alert(error);
+    }
+  }, [user, error]);
 
   return (
     <div className="login-container">
