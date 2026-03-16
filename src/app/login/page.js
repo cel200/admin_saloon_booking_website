@@ -46,7 +46,7 @@ export default function LoginPage() {
             Luxe<span className="text-accent">Salon</span>
           </h1>
         </div>
-
+ 
         <p className="subtitle">Welcome back! Please access your account.</p>
 
         <form onSubmit={handleLogin} className="login-form">
