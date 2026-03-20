@@ -6,14 +6,14 @@ import NotificationsSettings from '@/components/Notifications/NotificationsSetti
 export default function NotificationsPage() {
     return (
         <div className="notifications-page animate-fade-in">
-            <div className="notifications-layout">
-                <div className="main-panel">
+            {/* <div className="notifications-layout"> */}
+                {/* <div className="main-panel"> */}
                     <NotificationsList />
-                </div>
-                <div className="side-panel">
+                {/* </div> */}
+                {/* <div className="side-panel">
                     <NotificationsSettings />
-                </div>
-            </div>
+                </div> */}
+            {/* </div> */}
 
             <style jsx>{`
                 .notifications-page {

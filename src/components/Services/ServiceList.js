@@ -4,7 +4,7 @@ import { Edit2, Trash2, Clock, X } from 'lucide-react';
 import Table from '../Table';
 import './ServiceList.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteService, listServices, updateService } from '@/store/adminThunk';
+import { deleteService, listSectionByGender, listServices, updateService } from '@/store/adminThunk';
 
 export default function ServiceList({ services }) {
     const headers = ['Service', 'Duration', 'Price', 'Category'];
@@ -16,20 +16,61 @@ export default function ServiceList({ services }) {
         serviceName: '',
         duration: '',
         price: '',
-        category: '',
+        audience: '',
+        section: '',
+        isfeatured: '',
     });
+
+    const { listSectionByGenderData } = useSelector((state) => state.listSectionByGender);
+
+    const categoryOptions = Array.isArray(listSectionByGenderData)
+        ? listSectionByGenderData
+        : Array.isArray(listSectionByGenderData?.data)
+            ? listSectionByGenderData.data
+            : [];
 
     useEffect(() => {
         dispatch(listServices());
     }, [dispatch]);
 
     const openEditModal = (service) => {
+        const selectedAudience =
+            service?.audience ||
+            service?.section?.gender ||
+            service?.section?.audience ||
+            '';
+        const selectedSection =
+            service?.section?._id ||
+            service?.section?.id ||
+            service?.section ||
+            '';
+
+        if (selectedAudience) {
+            dispatch(listSectionByGender({ gender: selectedAudience }));
+        }
         setSelectedServiceId(service?._id || service?.id || null);
+        const rawFeatured =
+            service?.isFeatured ??
+            service?.isfeatured ??
+            service?.featured ??
+            '';
+        const selectedFeatured =
+            rawFeatured === true
+                ? 'true'
+                : rawFeatured === false
+                    ? 'false'
+                    : rawFeatured === 'Yes'
+                        ? 'true'
+                        : rawFeatured === 'No'
+                            ? 'false'
+                            : String(rawFeatured || '');
         setEditForm({
             serviceName: service.serviceName || '',
             duration: service.duration || '',
             price: service.price || '',
-            category: service.category || '',
+            audience: selectedAudience,
+            section: selectedSection,
+            isfeatured: selectedFeatured,
         });
         setIsEditModalOpen(true);
     };
@@ -44,6 +85,24 @@ export default function ServiceList({ services }) {
         setEditForm((prev) => ({
             ...prev,
             [name]: value,
+        }));
+    };
+
+    const handleEditAudienceChange = (event) => {
+        const selectedAudience = event.target.value;
+        dispatch(listSectionByGender({ gender: selectedAudience }));
+        setEditForm((prev) => ({
+            ...prev,
+            audience: selectedAudience,
+            section: '',
+        }));
+    };
+
+    const handleEditCategoryChange = (event) => {
+        const selectedSectionId = event.target.value;
+        setEditForm((prev) => ({
+            ...prev,
+            section: selectedSectionId,
         }));
     };
     async function handleDeleteService(service){
@@ -65,7 +124,9 @@ export default function ServiceList({ services }) {
                 serviceName: editForm.serviceName,
                 duration: editForm.duration,
                 price: Number(editForm.price),
-                category: editForm.category,
+                audience: editForm.audience,
+                section: editForm.section,
+                isFeatured: editForm.isfeatured === 'true',
             })).unwrap();
 
             dispatch(listServices());
@@ -164,15 +225,61 @@ export default function ServiceList({ services }) {
                             </div>
 
                             <div className="form-group">
-                                <label htmlFor="edit-category">Category</label>
-                                <input
-                                    id="edit-category"
-                                    name="category"
-                                    type="text"
-                                    value={editForm.category}
+                                <label htmlFor="edit-audience">Audience</label>
+                                <select
+                                    id="edit-audience"
+                                    name="audience"
+                                    value={editForm.audience}
+                                    onChange={handleEditAudienceChange}
+                                    required
+                                >
+                                    <option value="" disabled>
+                                        Select audience
+                                    </option>
+                                    <option value="Men">Men</option>
+                                    <option value="Women">Women</option>
+                                    <option value="Kids">Kids</option>
+                                </select>
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="edit-section">Category</label>
+                                <select
+                                    id="edit-section"
+                                    name="section"
+                                    value={editForm.section}
+                                    onChange={handleEditCategoryChange}
+                                    disabled={!editForm.audience || categoryOptions.length === 0}
+                                    required
+                                >
+                                    <option value="" disabled>
+                                        Select category
+                                    </option>
+                                    {categoryOptions.map((section) => (
+                                        <option
+                                            key={section.id || section._id}
+                                            value={section.id || section._id}
+                                        >
+                                            {section.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="edit-isfeatured">Is Featured</label>
+                                <select
+                                    id="edit-isfeatured"
+                                    name="isfeatured"
+                                    value={editForm.isfeatured}
                                     onChange={handleEditChange}
                                     required
-                                />
+                                >
+                                    <option value="" disabled>
+                                        Select option
+                                    </option>
+                                    <option value="true">Yes</option>
+                                    <option value="false">No</option>
+                                </select>
                             </div>
 
                             <div className="service-edit-modal-actions">

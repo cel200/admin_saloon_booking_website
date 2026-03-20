@@ -43,7 +43,7 @@ useEffect(() => {
                     </div>
                 </div>
 
-                <div className="card settings-card">
+                {/* <div className="card settings-card">
                     <h3>Notifications</h3>
                     <div className="toggle-group">
                         <div className="toggle-item">
@@ -67,7 +67,7 @@ useEffect(() => {
                             </label>
                         </div>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     );

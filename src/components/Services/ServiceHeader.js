@@ -13,6 +13,7 @@ const initialForm = {
   price: "",
   section: "",
   audience: "",
+  isFeatured: "",
 };
 
 export default function ServiceHeader() {
@@ -66,6 +67,7 @@ export default function ServiceHeader() {
         payload.append("description", formData.description);
       payload.append("price", String(Number(formData.price)));
       payload.append("section", formData.section);
+      payload.append("isFeatured", formData.isfeatured === "true");
       if (formData.image) {
         payload.append("image", formData.image);
       }
@@ -175,9 +177,6 @@ export default function ServiceHeader() {
                   required
                 />
               </div>
-
-             
-
               <div className="form-group">
                 <label htmlFor="audience">Audience</label>
                 <select
@@ -193,6 +192,22 @@ export default function ServiceHeader() {
                   <option value="Men">Men</option>
                   <option value="Women">Women</option>
                   <option value="Kids">Kids</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="isfeatured">Is Featured</label>
+                <select
+                  id="isfeatured"
+                  name="isfeatured"
+                  value={formData.isfeatured}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>
+                    Select option
+                  </option>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
                 </select>
               </div>
                 <div className="form-group">

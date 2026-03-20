@@ -32,7 +32,7 @@ export default function Dashboard() {
 
             <div className="dashboard-sections">
                 <RevenueChart />
-                <RecentBookings />
+                {/* <RecentBookings /> */}
             </div>
 
             <style jsx>{`

@@ -7,7 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { deleteStaff, listSectionByGender, listStaffs, updateStaff } from '@/store/adminThunk';
 
 export default function StaffList() {
-    const headers = ['Name', 'Mobile Number', 'Email', 'Experience', 'Specialization', 'Status', 'Rating'];
+    const headers = ['Name', 'Mobile Number', 'Email', 'Experience', 'Specialization',];
     const dispatch = useDispatch();
     const { listStaffsData } = useSelector((state) => state.listStaffs);
     const { listSectionByGenderData } = useSelector((state) => state.listSectionByGender);
@@ -22,8 +22,7 @@ export default function StaffList() {
         audience: '',
         section: '',
         specialization: '',
-        status: 'Available',
-        rating: '',
+       
     });
 
     const categoryOptions = Array.isArray(listSectionByGenderData)
@@ -153,7 +152,7 @@ const handleEditSubmit = async (event) => {
             <td>
                 <span className="badge-spec">{member?.specialization || '-'}</span>
             </td>
-            <td>
+            {/* <td>
                 <span className={`status-dot ${member?.status === 'Available' ? 'online' : member?.status === 'Busy' ? 'busy' : 'offline'}`} />
                 {member?.status || 'Offline'}
             </td>
@@ -162,7 +161,7 @@ const handleEditSubmit = async (event) => {
                     <Star size={14} className="text-yellow-400 fill-current" />
                     <span className="font-medium">{member?.rating ?? '-'}</span>
                 </div>
-            </td>
+            </td> */}
         </>
     );
 
