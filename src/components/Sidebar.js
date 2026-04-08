@@ -4,6 +4,8 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, Users, Scissors, LogOut, Settings, Briefcase, Bell } from 'lucide-react';
 import Cookies from 'js-cookie';
+import { useDispatch } from 'react-redux';
+import { logout } from '@/store/adminSlice';
 
 const Sidebar = ({ isOpen, closeSidebar }) => {
   const pathname = usePathname();
@@ -16,9 +18,12 @@ const Sidebar = ({ isOpen, closeSidebar }) => {
     { name: 'Notifications', icon: Bell, path: '/notifications' },
     { name: 'Settings', icon: Settings, path: '/settings' },
   ];
+  const dispatch = useDispatch()
   function handleLogout() {
+    dispatch(logout())
     Cookies.remove("token")
     router.push("/login")
+    console.log("logout")
   }
   return (
     <>

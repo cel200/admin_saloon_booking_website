@@ -377,3 +377,4 @@ export const getSettingsReducer = getSettingsSlice.reducer;
 export const listSectionByGenderReducer = listSectionByGenderSlice.reducer;
 export const getDashboardStatsReducer = getDashboardStatsSlice.reducer;
 export const getNotificationForAdminReducer = getNotificationForAdminSlice.reducer
+export const { logout } = authSlice.actions;
